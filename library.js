@@ -9,17 +9,17 @@ library.init = function(params, callback) {
 	var app = params.router;
 	var	middleware = params.middleware;
 
-	app.get('/admin/plugins/persona', middleware.admin.buildHeader, renderAdmin);
-	app.get('/api/admin/plugins/persona', renderAdmin);
+	app.get('/admin/plugins/themanadrain', middleware.admin.buildHeader, renderAdmin);
+	app.get('/api/admin/plugins/themanadrain', renderAdmin);
 
 	callback();
 };
 
 library.addAdminNavigation = function(header, callback) {
 	header.plugins.push({
-		route: '/plugins/persona',
+		route: '/plugins/themanadrain',
 		icon: 'fa-paint-brush',
-		name: 'Persona Theme'
+		name: 'The Mana Drain Theme'
 	});
 
 	callback(null, header);
@@ -88,7 +88,7 @@ library.defineWidgetAreas = function(areas, callback) {
 
 library.getThemeConfig = function(config, callback) {
 
-	meta.settings.get('persona', function(err, settings) {
+	meta.settings.get('themanadrain', function(err, settings) {
 		config.hideSubCategories = settings.hideSubCategories === 'on';
 		config.hideCategoryLastPost = settings.hideCategoryLastPost === 'on';
 	});
@@ -97,7 +97,7 @@ library.getThemeConfig = function(config, callback) {
 };
 
 function renderAdmin(req, res, next) {
-	res.render('admin/plugins/persona', {});
+	res.render('admin/plugins/themanadrain', {});
 }
 
 module.exports = library;

@@ -1,14 +1,14 @@
 {
-  "name": "nodebb-theme-persona",
+  "name": "nodebb-theme-themanadrain",
   "version": "4.1.88",
   "nbbpm": {
     "compatibility": "^0.8.2 || ^0.9.0 || ^1.0.0"
   },
-  "description": "Persona theme for NodeBB",
+  "description": "The Mana Drain theem for NodeBB",
   "main": "theme.less",
   "repository": {
     "type": "git",
-    "url": "https://github.com/psychobunny/nodebb-theme-persona"
+    "url": "https://github.com/andyprobasco/nodebb-theme-themanadrain"
   },
   "keywords": [
     "nodebb",
@@ -21,7 +21,7 @@
     {
       "name": "Andrew Rodrigues",
       "email": "andrew@designcreateplay.com",
-      "url": "https://github.com/psychobunny"
+      "url": "https://github.com/andyprobasco"
     },
     {
       "name": "Julian Lam",
@@ -36,6 +36,6 @@
   ],
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/psychobunny/nodebb-theme-persona/issues"
+    "url": "https://github.com/andyprobasco/nodebb-theme-themanadrain/issues"
   }
 }

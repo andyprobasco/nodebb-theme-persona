@@ -1,5 +1,5 @@
 {
-	"id": "nodebb-theme-persona",
+	"id": "nodebb-theme-themanadrain",
 	"library": "library.js",
 	"hooks": [
 		{ "hook": "filter:teasers.get", "method": "getTeasers" },
@@ -9,7 +9,7 @@
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" }
 	],
 	"scripts": [
-		"lib/persona.js",
+		"lib/themanadrain.js",
 		"lib/modules/nprogress.js",
 		"lib/modules/autohidingnavbar.min.js",
 		"lib/modules/slideout.min.js",

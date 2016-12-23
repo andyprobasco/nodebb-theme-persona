@@ -100,4 +100,37 @@ function renderAdmin(req, res, next) {
 	res.render('admin/plugins/themanadrain', {});
 }
 
+
+// TheManaDrain specific
+
+function parseDecklist (raw) {
+	var regex = /\[deck(?: name="([\s\S]*?)")?\]([\s\S]*?)\[\/deck\]/m
+	var results = regex.exec(raw);
+	if ( results ) {
+		var fullDeck = results[0];
+		var deckname = results[1];
+		var deckContent = results[2];
+		if ( deckContent ) {
+			var renderedDecklist = '<div class="decklist">';
+			var ddd = deckContent.replace(/^\D.*?$/mg, function (match) { return '<h2>' + match.replace('<br />', '') + '</h2>' });
+
+			renderedDecklist += ddd;
+			renderedDecklist += '</div>';
+
+			return raw.replace(fullDeck, renderedDecklist);
+		}
+	}
+
+	return raw;
+}
+
+library.renderDecklistRaw = function (raw, callback) {
+	callback(null, parseDecklist(raw));
+}
+
+library.renderDecklistPost = function (data, callback) {
+	data.postData.content = parseDecklist(data.postData.content);
+	callback(null, data);
+}
+
 module.exports = library;

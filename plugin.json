@@ -6,7 +6,9 @@
 		{ "hook": "filter:widgets.getAreas", "method": "defineWidgetAreas" },
 		{ "hook": "filter:config.get", "method": "getThemeConfig" },
 		{ "hook": "static:app.load", "method": "init" },
-		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" }
+		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
+		{ "hook": "filter:parse.post", "method": "renderDecklistPost"},
+		{ "hook": "filter:parse.raw", "method": "renderDecklistRaw"}
 	],
 	"scripts": [
 		"lib/themanadrain.js",

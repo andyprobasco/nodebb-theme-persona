@@ -103,33 +103,51 @@ function renderAdmin(req, res, next) {
 
 // TheManaDrain specific
 
+var decklistRegex = /\[deck(?: name="([\s\S]*?)")?\]([\s\S]*?)\[\/deck\]/mg
+var cardNameRegex = /\[\[(.*?)\]\]/g
+var decklistSubsectionRegex = /^\D.*?$/mg
+var decklistCardNameRegex = /^(\d+) (.*?)$/mg
+
 function parseDecklist (raw) {
-	var regex = /\[deck(?: name="([\s\S]*?)")?\]([\s\S]*?)\[\/deck\]/m
-	var results = regex.exec(raw);
-	if ( results ) {
-		var fullDeck = results[0];
-		var deckname = results[1];
-		var deckContent = results[2];
-		if ( deckContent ) {
+	var decklists;
+	while ( (decklists = decklistRegex.exec(raw)) != null) {
+		var rawDecklist = decklists[0];
+		var decklistName = decklists[1];
+		var decklistContent = decklists[2];
+		if ( decklistContent ) {
 			var renderedDecklist = '<div class="decklist">';
-			var ddd = deckContent.replace(/^\D.*?$/mg, function (match) { return '<h2>' + match.replace('<br />', '') + '</h2>' });
-
-			renderedDecklist += ddd;
+			renderedDecklist += decklistContent
+					.replace(decklistSubsectionRegex, function (match) { return '<h2>' + match.replace('<br />', '') + '</h2>' })
+					.replace(decklistCardNameRegex, function (match, quantity, cardName) {return quantity + ' [[' + cardName.replace('<br />', '') + ']] <br />'});
 			renderedDecklist += '</div>';
-
-			return raw.replace(fullDeck, renderedDecklist);
+			raw = raw.replace(rawDecklist, renderedDecklist);
 		}
 	}
 
 	return raw;
 }
 
+function parseCardNames (raw) {
+	var cardNames;
+	while ((cardNames = cardNameRegex.exec(raw)) != null) {
+		var rawCard = cardNames[0];
+		var name = cardNames[1];
+		raw = raw.replace(rawCard, '<a href="http://magiccards.info/query?q=!' + name.replace(' ', '+') + '">' + name + '</a>');
+	}
+
+	return raw;
+}
+
+
 library.renderDecklistRaw = function (raw, callback) {
-	callback(null, parseDecklist(raw));
+	raw = parseDecklist(raw);
+	raw = parseCardNames(raw);
+	callback(null, raw);
 }
 
 library.renderDecklistPost = function (data, callback) {
 	data.postData.content = parseDecklist(data.postData.content);
+	data.postData.content = parseCardNames(data.postData.content);
 	callback(null, data);
 }
 

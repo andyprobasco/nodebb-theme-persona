@@ -103,22 +103,30 @@ function renderAdmin(req, res, next) {
 
 // TheManaDrain specific
 
-var decklistRegex = /\[deck(?: name="([\s\S]*?)")?\]([\s\S]*?)\[\/deck\]/mg
+var decklistRegex = /<pre><code>([\s\S]*?)<\/code><\/pre>/mg
 var cardNameRegex = /\[\[(.*?)\]\]/g
-var decklistSubsectionRegex = /^\D.*?$/mg
+var decklistSubheadingRegex = /^([^\s\d].*?)$/mg
 var decklistCardNameRegex = /^(\d+) (.*?)$/mg
 
 function parseDecklist (raw) {
 	var decklists;
 	while ( (decklists = decklistRegex.exec(raw)) != null) {
 		var rawDecklist = decklists[0];
-		var decklistName = decklists[1];
-		var decklistContent = decklists[2];
+		var decklistContent = decklists[1];
 		if ( decklistContent ) {
 			var renderedDecklist = '<div class="decklist">';
 			renderedDecklist += decklistContent
-					.replace(decklistSubsectionRegex, function (match) { return '<h2>' + match.replace('<br />', '') + '</h2>' })
-					.replace(decklistCardNameRegex, function (match, quantity, cardName) {return quantity + ' [[' + cardName.replace('<br />', '') + ']] <br />'});
+					.replace(decklistSubheadingRegex, function (match, subheading) {
+						if (subheading.lastIndexOf('# ', 0) === 0) {
+							return '<h1>' + subheading.replace('# ', '') + '</h1>';
+						} else if (subheading.lastIndexOf('## ', 0) === 0) {
+							return '<h2>' + subheading.replace('## ', '') + '</h2>';
+						} else {
+							return '<h3>' + subheading + '</h3>';
+						}
+					}).replace(decklistCardNameRegex, function (match, quantity, cardName) {
+						return '<div>' + quantity + ' [[' + cardName.replace('<br />', '') + ']] </div>'
+					});
 			renderedDecklist += '</div>';
 			raw = raw.replace(rawDecklist, renderedDecklist);
 		}

@@ -22,7 +22,7 @@
 						</div>
 						<div class="col-md-2">
 							<label>&nbsp;</label>
-							<button type="submit" class="btn btn-default form-control">[[global:search]]</button>
+							<button type="submit" class="btn btn-primary form-control">[[global:search]]</button>
 						</div>
 					</div>
 				</div>
@@ -46,6 +46,11 @@
 								<!-- END categories -->
 							</select>
 							<input type="checkbox" id="search-children"> [[search:search-child-categories]]
+						</div>
+
+						<div class="form-group post-search-item">
+							<label>[[search:has-tags]]</label>
+							<input type="text" class="form-control" id="has-tags">
 						</div>
 
 						<div class="form-group post-search-item">
@@ -92,7 +97,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<select id="post-sort-by" class="form-control">
-										<option value=""></option>
+										<option value="relevance">[[search:relevance]]</option>
 										<option value="timestamp">[[search:post-time]]</option>
 										<option value="teaser.timestamp">[[search:last-reply-time]]</option>
 										<option value="topic.title">[[search:topic-title]]</option>

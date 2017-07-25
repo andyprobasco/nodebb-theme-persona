@@ -175,4 +175,12 @@ library.renderDecklistPost = function (data, callback) {
 	callback(null, data);
 }
 
+library.renderParentCategory = function (data, callback) {
+	if (data.templateData.template.topic) {
+		data.templateData.bodyClass += ' category-' + data.templateData.category.cid
+	}
+	callback(null, data);
+}
+
+
 module.exports = library;

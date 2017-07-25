@@ -7,9 +7,11 @@
 		{ "hook": "filter:config.get", "method": "getThemeConfig" },
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
+		{ "hook": "filter:topic.build", "method": "addUserToTopic" },
+
 		{ "hook": "filter:parse.post", "method": "renderDecklistPost"},
 		{ "hook": "filter:parse.raw", "method": "renderDecklistRaw"},
-		{ "hook": "filter:topic.build", "method": "addUserToTopic" }
+		{ "hook": "filter:middleware.render", "method": "renderParentCategory"}
 	],
 	"scripts": [
 		"lib/themanadrain.js",

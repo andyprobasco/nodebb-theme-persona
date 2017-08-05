@@ -175,12 +175,20 @@ library.renderDecklistPost = function (data, callback) {
 	callback(null, data);
 }
 
-library.renderParentCategory = function (data, callback) {
+library.addParentCategoryAsClass = function (data, callback) {
 	if (data.templateData.template.topic) {
 		data.templateData.bodyClass += ' category-' + data.templateData.category.cid
 	}
 	callback(null, data);
 }
 
+library.addTagsAsClass = function (data, callback) {
+	if (data.templateData.template.topic) {
+		for (var i=0;i<data.templateData.tags.length;i++) {
+			data.templateData.bodyClass += ' tag-' + data.templateData.tags[i].value;
+		}
+	}
+	callback(null, data);
+}
 
 module.exports = library;

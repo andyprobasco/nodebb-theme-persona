@@ -11,7 +11,8 @@
 
 		{ "hook": "filter:parse.post", "method": "renderDecklistPost"},
 		{ "hook": "filter:parse.raw", "method": "renderDecklistRaw"},
-		{ "hook": "filter:middleware.render", "method": "renderParentCategory"}
+		{ "hook": "filter:middleware.render", "method": "addParentCategoryAsClass"},
+		{ "hook": "filter:middleware.render", "method": "addTagsAsClass"}
 	],
 	"scripts": [
 		"lib/themanadrain.js",

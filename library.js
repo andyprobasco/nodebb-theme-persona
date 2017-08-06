@@ -177,7 +177,7 @@ library.renderDecklistPost = function (data, callback) {
 
 library.addParentCategoryAsClass = function (data, callback) {
 	if (data.templateData.template.topic) {
-		data.templateData.bodyClass += ' category-' + data.templateData.category.cid
+		data.templateData.bodyClass += ' category-' + data.templateData.category.name.replace(/\ /g, '-');
 	}
 	callback(null, data);
 }
@@ -185,7 +185,22 @@ library.addParentCategoryAsClass = function (data, callback) {
 library.addTagsAsClass = function (data, callback) {
 	if (data.templateData.template.topic) {
 		for (var i=0;i<data.templateData.tags.length;i++) {
-			data.templateData.bodyClass += ' tag-' + data.templateData.tags[i].value;
+			data.templateData.bodyClass += ' tag-' + data.templateData.tags[i].value.replace(/\ /g, '-');
+		}
+	}
+	callback(null, data);
+}
+
+library.insertStrategyIntoBreadcrumb = function (data, callback) {
+	console.log(data.templateData.breadcrumbs);
+	if (data.templateData.breadcrumbs) {
+		var breadcrumbs = data.templateData.breadcrumbs.slice()
+		for (var i=0;i<breadcrumbs.length;i++) {
+			if (breadcrumbs[i].text === 'deck to beat' ||
+			    breadcrumbs[i].text === 'primer' ||
+			    breadcrumbs[i].text === 'deck tech') {
+				data.templateData.breadcrumbs[i-1] = {text: 'Vintage Strategy', url: '/category/1/vintage-strategy'};
+			}
 		}
 	}
 	callback(null, data);

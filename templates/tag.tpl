@@ -1,9 +1,12 @@
+<!-- IMPORT partials/breadcrumbs.tpl -->
+<div widget-area="header">
+	<!-- BEGIN widgets.header -->
+	{{widgets.header.html}}
+	<!-- END widgets.header -->
+</div>
+
 <div class="tag">
 	<div class="clearfix">
-		<div class="pull-left">
-		<!-- IMPORT partials/breadcrumbs.tpl -->
-		</div>
-
 		<div class="pull-right">
 			<!-- IF loggedIn -->
 			<button component="category/post" id="new_topic" class="btn btn-primary">[[category:new_topic_button]]</button>

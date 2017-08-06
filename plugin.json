@@ -11,9 +11,7 @@
 
 		{ "hook": "filter:parse.post", "method": "renderDecklistPost"},
 		{ "hook": "filter:parse.raw", "method": "renderDecklistRaw"},
-		{ "hook": "filter:middleware.render", "method": "addParentCategoryAsClass"},
-		{ "hook": "filter:middleware.render", "method": "addTagsAsClass"},
-		{ "hook": "filter:middleware.render", "method": "insertStrategyIntoBreadcrumb"}
+		{ "hook": "filter:middleware.render", "method": "tmdRenderMiddleware"}
 	],
 	"scripts": [
 		"lib/themanadrain.js",

@@ -15,7 +15,8 @@
 		</div>
 
 		<div class="markread pull-right<!-- IF !topics.length --> hidden<!-- ENDIF !topics.length -->">
-			<button type="button" id="markAllRead" class="btn btn-default">[[unread:mark_as_read]]</button>
+			<button type="button" id="markSelectedRead" class="btn btn-default">Clear Selected</button>
+			<button type="button" id="markAllRead" class="btn btn-default">Clear All</button>
 		</div>
 
 	</div>

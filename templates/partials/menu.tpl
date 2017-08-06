@@ -107,7 +107,7 @@
 							</li>
 							<!-- IF showModMenu -->
 							<li role="presentation" class="divider"></li>
-							<li class="dropdown-header">Moderator Tools</li>
+							<li class="dropdown-header">[[pages:moderator-tools]]</li>
 							<li>
 								<a href="{relative_path}/flags">
 									<i class="fa fa-fw fa-flag"></i> <span>[[pages:flagged-content]]</span>
@@ -203,7 +203,7 @@
 					<!-- BEGIN navigation -->
 					<!-- IF function.displayMenuItem, @index -->
 					<li class="{navigation.class}">
-						<a href="{navigation.route}" title="{navigation.title}" <!-- IF navigation.id -->id="{navigation.id}"<!-- ENDIF navigation.id --><!-- IF navigation.properties.targetBlank --> target="_blank"<!-- ENDIF navigation.properties.targetBlank -->>
+						<a class="navigation-link" href="{navigation.route}" title="{navigation.title}" <!-- IF navigation.id -->id="{navigation.id}"<!-- ENDIF navigation.id --><!-- IF navigation.properties.targetBlank --> target="_blank"<!-- ENDIF navigation.properties.targetBlank -->>
 							<!-- IF navigation.iconClass -->
 							<i class="fa fa-fw {navigation.iconClass}"></i>
 							<!-- ENDIF navigation.iconClass -->
